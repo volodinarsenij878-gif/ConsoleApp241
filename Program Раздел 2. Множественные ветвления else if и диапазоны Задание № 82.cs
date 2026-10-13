@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Program82
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            Console.Write("Введите уровень шума в децибелах (дБ): ");
+
+            // Безопасный ввод: пытаемся преобразовать строку в число
+            if (!double.TryParse(Console.ReadLine(), out double noiseLevel))
+            {
+                Console.WriteLine("Ошибка: введено не число. Пожалуйста, введите корректное значение.");
+                return;
+            }
+
+            // Проверка на отрицательное значение (уровень шума не может быть отрицательным)
+            if (noiseLevel < 0)
+            {
+                Console.WriteLine("Ошибка: уровень шума не может быть отрицательным.");
+                return;
+            }
+
+            string verdict;
+
+            if (noiseLevel < 40)
+            {
+                verdict = "Тихо";
+            }
+            else if (noiseLevel >= 40 && noiseLevel <= 60)
+            {
+                verdict = "Норма";
+            }
+            else if (noiseLevel >= 61 && noiseLevel <= 80)
+            {
+                verdict = "Шумно";
+            }
+            else // noiseLevel > 80
+            {
+                verdict = "Вредно для здоровья";
+            }
+
+            Console.WriteLine($"Уровень шума: {noiseLevel} дБ — {verdict}");
+        }
+    }
+}
